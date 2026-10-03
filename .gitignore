@@ -16,3 +16,8 @@ captures
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# Signing secrets
+*.jks
+*.keystore
+keystore.properties

@@ -6,6 +6,10 @@ A minimal water-drinking reminder. Kotlin Multiplatform + Compose Multiplatform,
 - Reminders fire one interval after your last drink, only within active hours, and pause once the daily goal is reached.
 - The notification's **Drank a glass** action logs 250 ml without opening the app.
 
+## Download
+
+Grab the APK from the [latest release](https://github.com/enlob/Wata/releases/latest) and open it on your phone (Android 8.0+). You may need to allow installs from your browser or file manager.
+
 ## Structure
 
 - `composeApp/src/commonMain` — all UI and logic (`data/ReminderPlanner.kt` holds the scheduling rules).
@@ -22,4 +26,4 @@ A minimal water-drinking reminder. Kotlin Multiplatform + Compose Multiplatform,
 ./gradlew :composeApp:installRelease
 ```
 
-The release build is minified and signed with the debug key so it can be sideloaded directly.
+Release builds are minified and signed with the key configured in `~/.gradle/gradle.properties` (`WATA_KEYSTORE`, `WATA_KEYSTORE_PASSWORD`, `WATA_KEY_ALIAS`). Without it they fall back to the debug key.

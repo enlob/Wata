@@ -45,7 +45,20 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
+    }
+    // Release key lives outside the repo; its location and password come from
+    // ~/.gradle/gradle.properties (WATA_KEYSTORE, WATA_KEYSTORE_PASSWORD, WATA_KEY_ALIAS).
+    val releaseKeystore = providers.gradleProperty("WATA_KEYSTORE").orNull
+    signingConfigs {
+        if (releaseKeystore != null) {
+            create("release") {
+                storeFile = file(releaseKeystore)
+                storePassword = providers.gradleProperty("WATA_KEYSTORE_PASSWORD").get()
+                keyAlias = providers.gradleProperty("WATA_KEY_ALIAS").getOrElse("wata")
+                keyPassword = storePassword
+            }
+        }
     }
     packaging {
         resources {
@@ -57,8 +70,8 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
-            // Sideload-friendly: sign release with the debug key so it installs directly.
-            signingConfig = signingConfigs.getByName("debug")
+            // Without the release key (e.g. a fresh clone), fall back to the debug key so it still installs.
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
     compileOptions {
