@@ -1,0 +1,7 @@
+<resources>
+    <color name="window_background">#FF0C1B2C</color>
+    <style name="Theme.Wata" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:colorBackground">@color/window_background</item>
+    </style>
+</resources>
