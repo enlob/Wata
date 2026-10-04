@@ -2,6 +2,12 @@
 
 A minimal water-drinking reminder. Kotlin Multiplatform + Compose Multiplatform, Android target.
 
+<p align="center">
+  <img src="docs/screenshots/home-light.png" width="260" alt="Home screen, light mode, 1250 of 2000 ml">
+  <img src="docs/screenshots/settings.png" width="260" alt="Settings sheet">
+  <img src="docs/screenshots/home-dark.png" width="260" alt="Home screen, dark mode, goal reached">
+</p>
+
 - Log a sip (100 ml), glass (250 ml) or bottle (500 ml); undo the last one.
 - Reminders fire one interval after your last drink, only within active hours, and pause once the daily goal is reached.
 - The notification's **Drank a glass** action logs 250 ml without opening the app.
