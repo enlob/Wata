@@ -1,0 +1,13 @@
+<resources>
+    <string name="channel_name">Promemoria per bere</string>
+    <string name="channel_description">Promemoria per bere acqua durante la giornata</string>
+    <string-array name="reminder_titles">
+        <item>È ora di un po’ d’acqua 💧</item>
+        <item>Pausa idratazione 💧</item>
+        <item>Un bicchiere d’acqua? 💧</item>
+        <item>Il tuo corpo ti ringrazierà 💧</item>
+    </string-array>
+    <string name="reminder_text_start">Inizia con un bicchiere. Obiettivo di oggi: %1$d ml.</string>
+    <string name="reminder_text_progress">%1$d su %2$d ml finora, ne mancano %3$d.</string>
+    <string name="action_drank_glass">Ho bevuto un bicchiere (%1$d ml)</string>
+</resources>

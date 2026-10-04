@@ -1,0 +1,42 @@
+<resources>
+    <string name="greeting_morning">Buenos días</string>
+    <string name="greeting_afternoon">Buenas tardes</string>
+    <string name="greeting_evening">Buenas noches</string>
+    <string name="greeting_night">¿Trasnochando?</string>
+    <string name="settings">Ajustes</string>
+
+    <string name="of_goal">de %1$d ml</string>
+    <string name="title_start">Empecemos con un vaso</string>
+    <string name="title_reached">¡Meta alcanzada, bien hecho!</string>
+    <string name="title_good_start">Buen comienzo</string>
+    <string name="title_keep_going">Sigue así</string>
+    <string name="title_over_halfway">Más de la mitad</string>
+    <string name="title_almost">¡Ya casi!</string>
+    <string name="subtitle_goal_today">Tu meta de hoy: %1$d ml</string>
+    <string name="subtitle_reached">%1$d% de tu meta diaria</string>
+    <string name="subtitle_progress">Faltan %1$d ml  ·  %2$d%</string>
+
+    <string name="reminders_off">Recordatorios desactivados</string>
+    <string name="allow_notifications">Permite las notificaciones para recibir recordatorios</string>
+    <string name="next_reminder_today">Próximo recordatorio a las %1$s</string>
+    <string name="next_reminder_tomorrow">Próximo recordatorio mañana a las %1$s</string>
+
+    <string name="portion_sip">Sorbo</string>
+    <string name="portion_glass">Vaso</string>
+    <string name="portion_bottle">Botella</string>
+    <string name="last_drink">Último: %1$d ml a las %2$s</string>
+    <string name="undo">Deshacer</string>
+
+    <string name="done">Listo</string>
+    <string name="daily_goal">Meta diaria</string>
+    <plurals name="glasses_hint">
+        <item quantity="one">Aproximadamente %1$d vaso de 250 ml</item>
+        <item quantity="other">Unos %1$d vasos de 250 ml</item>
+    </plurals>
+    <string name="reminders">Recordatorios</string>
+    <string name="reminders_hint">Un aviso amable cuando toque beber</string>
+    <string name="notifications_blocked">Las notificaciones están bloqueadas. Toca para permitirlas.</string>
+    <string name="remind_every">Recordarme cada</string>
+    <string name="active_hours">Horario activo</string>
+    <string name="active_hours_hint">Sin recordatorios fuera de este horario</string>
+</resources>

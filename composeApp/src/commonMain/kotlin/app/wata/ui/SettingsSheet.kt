@@ -45,7 +45,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.wata.data.WaterSettings
+import app.wata.resources.*
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.pluralStringResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.roundToInt
 
 private val Intervals = listOf(30, 45, 60, 90, 120)
@@ -76,15 +79,15 @@ fun SettingsSheet(
                 .padding(bottom = 24.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Settings", fontSize = 24.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                Text(stringResource(Res.string.settings), fontSize = 24.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
                 TextButton(onClick = { scope.launch { sheetState.hide() }.invokeOnCompletion { onDismiss() } }) {
-                    Text("Done", fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(Res.string.done), fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
 
             Spacer(Modifier.height(20.dp))
             var goal by remember(settings.dailyGoalMl) { mutableFloatStateOf(settings.dailyGoalMl.toFloat()) }
-            LabelRow("Daily goal", "${goal.roundToInt()} ml")
+            LabelRow(stringResource(Res.string.daily_goal), "${goal.roundToInt()} ml")
             Slider(
                 value = goal,
                 onValueChange = { goal = it },
@@ -93,13 +96,14 @@ fun SettingsSheet(
                 steps = 29,
                 colors = sliderColors(),
             )
-            Hint("About ${(goal / 250f).roundToInt()} glasses of 250 ml")
+            val glasses = (goal / 250f).roundToInt()
+            Hint(pluralStringResource(Res.plurals.glasses_hint, glasses, glasses))
 
             Spacer(Modifier.height(28.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text("Reminders", fontSize = 17.sp, fontWeight = FontWeight.SemiBold)
-                    Hint("A gentle nudge when it's time to drink")
+                    Text(stringResource(Res.string.reminders), fontSize = 17.sp, fontWeight = FontWeight.SemiBold)
+                    Hint(stringResource(Res.string.reminders_hint))
                 }
                 Switch(
                     checked = settings.remindersOn,
@@ -126,16 +130,17 @@ fun SettingsSheet(
                             Icon(WataIcons.Bell, null, tint = colors.warning, modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(10.dp))
                             Text(
-                                "Notifications are blocked. Tap to allow them.",
+                                stringResource(Res.string.notifications_blocked),
                                 color = colors.warning,
                                 fontSize = 14.sp,
+                                lineHeight = 19.sp,
                                 fontWeight = FontWeight.Medium,
                             )
                         }
                     }
 
                     Spacer(Modifier.height(24.dp))
-                    LabelRow("Remind me every", null)
+                    LabelRow(stringResource(Res.string.remind_every), null)
                     Spacer(Modifier.height(12.dp))
                     IntervalPicker(settings.intervalMinutes) { minutes -> onChange { it.copy(intervalMinutes = minutes) } }
 
@@ -145,7 +150,7 @@ fun SettingsSheet(
                     }
                     val use24h = platform.use24HourClock
                     LabelRow(
-                        "Active hours",
+                        stringResource(Res.string.active_hours),
                         "${formatHour(hours.start.roundToInt(), use24h)} – ${formatHour(hours.endInclusive.roundToInt(), use24h)}",
                     )
                     RangeSlider(
@@ -158,7 +163,7 @@ fun SettingsSheet(
                         steps = 23,
                         colors = sliderColors(),
                     )
-                    Hint("No reminders outside these hours")
+                    Hint(stringResource(Res.string.active_hours_hint))
                 }
             }
         }
@@ -176,7 +181,7 @@ private fun LabelRow(label: String, value: String?) {
 
 @Composable
 private fun Hint(text: String) {
-    Text(text, color = LocalWataColors.current.inkMuted, fontSize = 13.sp)
+    Text(text, color = LocalWataColors.current.inkMuted, fontSize = 13.sp, lineHeight = 18.sp)
 }
 
 @Composable

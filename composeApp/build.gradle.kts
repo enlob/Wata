@@ -24,6 +24,7 @@ kotlin {
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
             implementation(libs.kotlinx.datetime)
         }
         androidMain.dependencies {
@@ -36,16 +37,27 @@ kotlin {
     }
 }
 
+compose.resources {
+    packageOfResClass = "app.wata.resources"
+}
+
 android {
     namespace = "app.wata"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    // Lists the translated languages so Android 13+ offers a per-app language setting,
+    // and drops library translations for languages the app itself doesn't support.
+    androidResources {
+        generateLocaleConfig = true
+        localeFilters += listOf("en", "it", "fr", "de", "es")
+    }
 
     defaultConfig {
         applicationId = "app.wata"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
     }
     // Release key lives outside the repo; its location and password come from
     // ~/.gradle/gradle.properties (WATA_KEYSTORE, WATA_KEYSTORE_PASSWORD, WATA_KEY_ALIAS).

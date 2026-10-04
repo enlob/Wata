@@ -1,0 +1,42 @@
+<resources>
+    <string name="greeting_morning">Guten Morgen</string>
+    <string name="greeting_afternoon">Guten Tag</string>
+    <string name="greeting_evening">Guten Abend</string>
+    <string name="greeting_night">Hallo, Nachteule</string>
+    <string name="settings">Einstellungen</string>
+
+    <string name="of_goal">von %1$d ml</string>
+    <string name="title_start">Fang mit einem Glas an</string>
+    <string name="title_reached">Ziel erreicht, super!</string>
+    <string name="title_good_start">Guter Anfang</string>
+    <string name="title_keep_going">Weiter so</string>
+    <string name="title_over_halfway">Mehr als die Hälfte</string>
+    <string name="title_almost">Fast geschafft</string>
+    <string name="subtitle_goal_today">Dein Ziel heute: %1$d ml</string>
+    <string name="subtitle_reached">%1$d&#160;% deines Tagesziels</string>
+    <string name="subtitle_progress">Noch %1$d ml  ·  %2$d&#160;%</string>
+
+    <string name="reminders_off">Erinnerungen sind aus</string>
+    <string name="allow_notifications">Erlaube Benachrichtigungen für Erinnerungen</string>
+    <string name="next_reminder_today">Nächste Erinnerung um %1$s</string>
+    <string name="next_reminder_tomorrow">Nächste Erinnerung morgen um %1$s</string>
+
+    <string name="portion_sip">Schluck</string>
+    <string name="portion_glass">Glas</string>
+    <string name="portion_bottle">Flasche</string>
+    <string name="last_drink">Zuletzt: %1$d ml um %2$s</string>
+    <string name="undo">Rückgängig</string>
+
+    <string name="done">Fertig</string>
+    <string name="daily_goal">Tagesziel</string>
+    <plurals name="glasses_hint">
+        <item quantity="one">Etwa %1$d Glas à 250 ml</item>
+        <item quantity="other">Etwa %1$d Gläser à 250 ml</item>
+    </plurals>
+    <string name="reminders">Erinnerungen</string>
+    <string name="reminders_hint">Ein sanfter Hinweis zum Trinken</string>
+    <string name="notifications_blocked">Benachrichtigungen sind blockiert. Tippe, um sie zu erlauben.</string>
+    <string name="remind_every">Erinnerung alle</string>
+    <string name="active_hours">Zeitfenster</string>
+    <string name="active_hours_hint">Keine Erinnerungen außerhalb dieser Zeit</string>
+</resources>

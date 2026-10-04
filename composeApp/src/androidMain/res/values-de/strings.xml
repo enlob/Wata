@@ -1,0 +1,13 @@
+<resources>
+    <string name="channel_name">Trink-Erinnerungen</string>
+    <string name="channel_description">Erinnerungen, über den Tag verteilt Wasser zu trinken</string>
+    <string-array name="reminder_titles">
+        <item>Zeit für etwas Wasser 💧</item>
+        <item>Trinkpause 💧</item>
+        <item>Ein Glas Wasser? 💧</item>
+        <item>Dein Körper wird es dir danken 💧</item>
+    </string-array>
+    <string name="reminder_text_start">Fang mit einem Glas an. Ziel heute: %1$d ml.</string>
+    <string name="reminder_text_progress">%1$d von %2$d ml bisher, noch %3$d ml.</string>
+    <string name="action_drank_glass">Glas getrunken (%1$d ml)</string>
+</resources>

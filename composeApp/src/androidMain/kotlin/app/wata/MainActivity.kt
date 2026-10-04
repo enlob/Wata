@@ -16,6 +16,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.edit
 import app.wata.ui.AppPlatform
+import java.time.format.DateTimeFormatter
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toJavaLocalDate
 
 class MainActivity : ComponentActivity() {
 
@@ -63,6 +66,13 @@ class MainActivity : ComponentActivity() {
         fun update() {
             notificationsAllowed = ReminderNotifications.canNotify(this@MainActivity)
             use24HourClock = DateFormat.is24HourFormat(this@MainActivity)
+        }
+
+        override fun formatDate(date: LocalDate): String {
+            // Follows the app's language (including Android 13+ per-app language), e.g. "domenica 4 ottobre".
+            val locale = resources.configuration.locales[0]
+            val pattern = DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM")
+            return date.toJavaLocalDate().format(DateTimeFormatter.ofPattern(pattern, locale))
         }
 
         override fun requestNotificationAccess() {

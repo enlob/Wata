@@ -1,9 +1,6 @@
 package app.wata.ui
 
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Instant
 
@@ -22,22 +19,6 @@ internal fun formatTime(at: Instant, use24h: Boolean, tz: TimeZone = TimeZone.cu
     return formatClock(t.hour, t.minute, use24h)
 }
 
-/** "at 14:30", "tomorrow at 08:00". */
-internal fun formatUpcoming(at: Instant, now: Instant, use24h: Boolean, tz: TimeZone = TimeZone.currentSystemDefault()): String {
-    val day = at.toLocalDateTime(tz).date
-    val today = now.toLocalDateTime(tz).date
-    val time = formatTime(at, use24h, tz)
-    return when (day) {
-        today -> "at $time"
-        today.plus(1, DateTimeUnit.DAY) -> "tomorrow at $time"
-        else -> "on ${day.dayOfWeek.name.titleCase()} at $time"
-    }
-}
-
-/** "Saturday, 3 October". */
-internal fun formatDate(date: LocalDate): String =
-    "${date.dayOfWeek.name.titleCase()}, ${date.day} ${date.month.name.titleCase()}"
-
 internal fun formatInterval(minutes: Int): String = when {
     minutes < 60 -> "$minutes min"
     minutes % 60 == 0 -> "${minutes / 60} h"
@@ -46,5 +27,3 @@ internal fun formatInterval(minutes: Int): String = when {
 }
 
 private fun Int.pad() = toString().padStart(2, '0')
-
-private fun String.titleCase() = lowercase().replaceFirstChar { it.uppercase() }

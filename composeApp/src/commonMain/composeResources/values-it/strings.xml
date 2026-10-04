@@ -1,0 +1,42 @@
+<resources>
+    <string name="greeting_morning">Buongiorno</string>
+    <string name="greeting_afternoon">Buon pomeriggio</string>
+    <string name="greeting_evening">Buonasera</string>
+    <string name="greeting_night">Ore piccole, eh?</string>
+    <string name="settings">Impostazioni</string>
+
+    <string name="of_goal">su %1$d ml</string>
+    <string name="title_start">Iniziamo con un bicchiere</string>
+    <string name="title_reached">Obiettivo raggiunto!</string>
+    <string name="title_good_start">Buon inizio</string>
+    <string name="title_keep_going">Continua così</string>
+    <string name="title_over_halfway">Oltre metà strada</string>
+    <string name="title_almost">Ci sei quasi</string>
+    <string name="subtitle_goal_today">Il tuo obiettivo di oggi: %1$d ml</string>
+    <string name="subtitle_reached">%1$d% del tuo obiettivo giornaliero</string>
+    <string name="subtitle_progress">Mancano %1$d ml  ·  %2$d%</string>
+
+    <string name="reminders_off">Promemoria disattivati</string>
+    <string name="allow_notifications">Consenti le notifiche per i promemoria</string>
+    <string name="next_reminder_today">Prossimo promemoria alle %1$s</string>
+    <string name="next_reminder_tomorrow">Prossimo promemoria domani alle %1$s</string>
+
+    <string name="portion_sip">Sorso</string>
+    <string name="portion_glass">Bicchiere</string>
+    <string name="portion_bottle">Bottiglia</string>
+    <string name="last_drink">Ultimo: %1$d ml alle %2$s</string>
+    <string name="undo">Annulla</string>
+
+    <string name="done">Fatto</string>
+    <string name="daily_goal">Obiettivo giornaliero</string>
+    <plurals name="glasses_hint">
+        <item quantity="one">Circa %1$d bicchiere da 250 ml</item>
+        <item quantity="other">Circa %1$d bicchieri da 250 ml</item>
+    </plurals>
+    <string name="reminders">Promemoria</string>
+    <string name="reminders_hint">Un piccolo avviso quando è ora di bere</string>
+    <string name="notifications_blocked">Le notifiche sono bloccate. Tocca per consentirle.</string>
+    <string name="remind_every">Ricordamelo ogni</string>
+    <string name="active_hours">Fascia oraria</string>
+    <string name="active_hours_hint">Nessun promemoria fuori da questa fascia</string>
+</resources>

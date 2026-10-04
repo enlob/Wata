@@ -63,18 +63,21 @@ import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
 import app.wata.data.Drink
 import app.wata.data.WaterState
+import app.wata.resources.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.roundToInt
 import kotlin.time.Instant
 
-private class Portion(val label: String, val ml: Int, val iconScale: Float)
+private class Portion(val label: StringResource, val ml: Int, val iconScale: Float)
 
 private val Portions = listOf(
-    Portion("Sip", 100, 0.62f),
-    Portion("Glass", 250, 0.82f),
-    Portion("Bottle", 500, 1f),
+    Portion(Res.string.portion_sip, 100, 0.62f),
+    Portion(Res.string.portion_glass, 250, 0.82f),
+    Portion(Res.string.portion_bottle, 500, 1f),
 )
 
 @Composable
@@ -122,7 +125,7 @@ fun HomeScreen(
                     }
                     Spacer(Modifier.width(24.dp))
                     Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Header(now, onOpenSettings)
+                        Header(now, platform, onOpenSettings)
                         Spacer(Modifier.height(16.dp))
                         ProgressMessage(state)
                         Spacer(Modifier.height(12.dp))
@@ -134,7 +137,7 @@ fun HomeScreen(
                 }
             } else {
                 Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Header(now, onOpenSettings)
+                    Header(now, platform, onOpenSettings)
                     Spacer(Modifier.weight(1f))
                     bubble(min(width * 0.8f, height * 0.42f))
                     Spacer(Modifier.height(32.dp))
@@ -151,33 +154,33 @@ fun HomeScreen(
 }
 
 @Composable
-private fun Header(now: Instant, onOpenSettings: () -> Unit) {
+private fun Header(now: Instant, platform: AppPlatform, onOpenSettings: () -> Unit) {
     val colors = LocalWataColors.current
     val local = now.toLocalDateTime(TimeZone.currentSystemDefault())
     val greeting = when (local.hour) {
-        in 5..11 -> "Good morning"
-        in 12..17 -> "Good afternoon"
-        in 18..22 -> "Good evening"
-        else -> "Hello, night owl"
+        in 5..11 -> Res.string.greeting_morning
+        in 12..17 -> Res.string.greeting_afternoon
+        in 18..22 -> Res.string.greeting_evening
+        else -> Res.string.greeting_night
     }
     Row(Modifier.fillMaxWidth().padding(top = 16.dp), verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
             Text(
-                formatDate(local.date).uppercase(),
+                platform.formatDate(local.date).uppercase(),
                 color = colors.inkMuted,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.SemiBold,
                 letterSpacing = 1.4.sp,
             )
             Text(
-                greeting,
+                stringResource(greeting),
                 color = colors.ink,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.SemiBold,
                 letterSpacing = (-0.5).sp,
             )
         }
-        CircleIconButton(WataIcons.Settings, "Settings", onOpenSettings)
+        CircleIconButton(WataIcons.Settings, stringResource(Res.string.settings), onOpenSettings)
     }
 }
 
@@ -232,7 +235,7 @@ private fun Bubble(state: WaterState, size: Dp, splash: () -> Float) {
                     modifier = Modifier.alignByBaseline().padding(start = 4.dp),
                 )
             }
-            Text("of ${state.settings.dailyGoalMl} ml", style = style, color = secondary, fontSize = 15.sp)
+            Text(stringResource(Res.string.of_goal, state.settings.dailyGoalMl), style = style, color = secondary, fontSize = 15.sp)
         }
     }
 }
@@ -243,18 +246,20 @@ private fun ProgressMessage(state: WaterState) {
     val goal = state.settings.dailyGoalMl
     val remaining = (goal - state.totalMl).coerceAtLeast(0)
     val percent = (state.progress * 100).roundToInt()
-    val title = when {
-        state.totalMl == 0 -> "Let's start with a glass"
-        state.goalReached -> "Goal reached, well done!"
-        state.progress < 0.25f -> "Good start"
-        state.progress < 0.5f -> "Keep it flowing"
-        state.progress < 0.75f -> "Over halfway there"
-        else -> "Almost there"
-    }
+    val title = stringResource(
+        when {
+            state.totalMl == 0 -> Res.string.title_start
+            state.goalReached -> Res.string.title_reached
+            state.progress < 0.25f -> Res.string.title_good_start
+            state.progress < 0.5f -> Res.string.title_keep_going
+            state.progress < 0.75f -> Res.string.title_over_halfway
+            else -> Res.string.title_almost
+        },
+    )
     val subtitle = when {
-        state.totalMl == 0 -> "Your goal today is $goal ml"
-        state.goalReached -> "$percent% of your daily goal"
-        else -> "$remaining ml to go  ·  $percent%"
+        state.totalMl == 0 -> stringResource(Res.string.subtitle_goal_today, goal)
+        state.goalReached -> stringResource(Res.string.subtitle_reached, percent)
+        else -> stringResource(Res.string.subtitle_progress, remaining, percent)
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         AnimatedContent(
@@ -264,7 +269,7 @@ private fun ProgressMessage(state: WaterState) {
         ) {
             Text(it, color = colors.ink, fontSize = 21.sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
         }
-        Text(subtitle, color = colors.inkMuted, fontSize = 15.sp, textAlign = TextAlign.Center)
+        Text(subtitle, color = colors.inkMuted, fontSize = 15.sp, lineHeight = 20.sp, textAlign = TextAlign.Center)
     }
 }
 
@@ -274,9 +279,15 @@ private fun ReminderStatus(state: WaterState, now: Instant, platform: AppPlatfor
     val next = state.nextReminder
     val blocked = state.settings.remindersOn && !platform.notificationsAllowed
     val text = when {
-        !state.settings.remindersOn || next == null -> "Reminders are off"
-        blocked -> "Allow notifications to get reminders"
-        else -> "Next reminder ${formatUpcoming(next, now, platform.use24HourClock)}"
+        !state.settings.remindersOn || next == null -> stringResource(Res.string.reminders_off)
+        blocked -> stringResource(Res.string.allow_notifications)
+        else -> {
+            val tz = TimeZone.currentSystemDefault()
+            val time = formatTime(next, platform.use24HourClock, tz)
+            // The planner never schedules further ahead than tomorrow morning.
+            val today = next.toLocalDateTime(tz).date == now.toLocalDateTime(tz).date
+            stringResource(if (today) Res.string.next_reminder_today else Res.string.next_reminder_tomorrow, time)
+        }
     }
     val tint = when {
         blocked -> colors.warning
@@ -353,7 +364,7 @@ private fun AddButton(portion: Portion, primary: Boolean, onClick: () -> Unit, m
         }
         Spacer(Modifier.height(10.dp))
         Text("+${portion.ml} ml", color = content, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
-        Text(portion.label, color = content.copy(alpha = 0.7f), fontSize = 13.sp)
+        Text(stringResource(portion.label), color = content.copy(alpha = 0.7f), fontSize = 13.sp)
     }
 }
 
@@ -372,11 +383,15 @@ private fun UndoRow(last: Drink?, use24h: Boolean, onUndo: () -> Unit) {
                         .padding(horizontal = 14.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("Last: ${drink.ml} ml at ${formatTime(drink.at, use24h)}", color = colors.inkMuted, fontSize = 13.sp)
+                    Text(
+                        stringResource(Res.string.last_drink, drink.ml, formatTime(drink.at, use24h)),
+                        color = colors.inkMuted,
+                        fontSize = 13.sp,
+                    )
                     Text("   ·   ", color = colors.inkMuted, fontSize = 13.sp)
                     Icon(WataIcons.Undo, null, tint = colors.accent, modifier = Modifier.size(16.dp))
                     Spacer(Modifier.width(4.dp))
-                    Text("Undo", color = colors.accent, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(Res.string.undo), color = colors.accent, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }

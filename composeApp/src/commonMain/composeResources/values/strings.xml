@@ -1,0 +1,42 @@
+<resources>
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="greeting_night">Hello, night owl</string>
+    <string name="settings">Settings</string>
+
+    <string name="of_goal">of %1$d ml</string>
+    <string name="title_start">Let’s start with a glass</string>
+    <string name="title_reached">Goal reached, well done!</string>
+    <string name="title_good_start">Good start</string>
+    <string name="title_keep_going">Keep it flowing</string>
+    <string name="title_over_halfway">Over halfway there</string>
+    <string name="title_almost">Almost there</string>
+    <string name="subtitle_goal_today">Your goal today is %1$d ml</string>
+    <string name="subtitle_reached">%1$d% of your daily goal</string>
+    <string name="subtitle_progress">%1$d ml to go  ·  %2$d%</string>
+
+    <string name="reminders_off">Reminders are off</string>
+    <string name="allow_notifications">Allow notifications to get reminders</string>
+    <string name="next_reminder_today">Next reminder at %1$s</string>
+    <string name="next_reminder_tomorrow">Next reminder tomorrow at %1$s</string>
+
+    <string name="portion_sip">Sip</string>
+    <string name="portion_glass">Glass</string>
+    <string name="portion_bottle">Bottle</string>
+    <string name="last_drink">Last: %1$d ml at %2$s</string>
+    <string name="undo">Undo</string>
+
+    <string name="done">Done</string>
+    <string name="daily_goal">Daily goal</string>
+    <plurals name="glasses_hint">
+        <item quantity="one">About %1$d glass of 250 ml</item>
+        <item quantity="other">About %1$d glasses of 250 ml</item>
+    </plurals>
+    <string name="reminders">Reminders</string>
+    <string name="reminders_hint">A gentle nudge when it’s time to drink</string>
+    <string name="notifications_blocked">Notifications are blocked. Tap to allow them.</string>
+    <string name="remind_every">Remind me every</string>
+    <string name="active_hours">Active hours</string>
+    <string name="active_hours_hint">No reminders outside these hours</string>
+</resources>

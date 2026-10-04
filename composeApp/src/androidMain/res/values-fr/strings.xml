@@ -1,0 +1,13 @@
+<resources>
+    <string name="channel_name">Rappels pour boire</string>
+    <string name="channel_description">Rappels pour boire de l’eau pendant la journée</string>
+    <string-array name="reminder_titles">
+        <item>C’est l’heure de boire de l’eau 💧</item>
+        <item>Pause hydratation 💧</item>
+        <item>Un verre d’eau&#160;? 💧</item>
+        <item>Ton corps te remerciera 💧</item>
+    </string-array>
+    <string name="reminder_text_start">Commence par un verre. Objectif du jour&#160;: %1$d ml.</string>
+    <string name="reminder_text_progress">%1$d sur %2$d ml jusqu’ici, encore %3$d ml.</string>
+    <string name="action_drank_glass">Verre bu (%1$d ml)</string>
+</resources>

@@ -12,6 +12,12 @@ A minimal water-drinking reminder. Kotlin Multiplatform + Compose Multiplatform,
 - Reminders fire one interval after your last drink, only within active hours, and pause once the daily goal is reached.
 - The notification's **Drank a glass** action logs 250 ml without opening the app.
 
+## Languages
+
+English, Italiano, Français, Deutsch, Español. Wata follows the phone's language; on Android 13+ you can also pick it per app in *Settings → Apps → Wata → Language*.
+
+To add or fix a translation, edit `composeApp/src/commonMain/composeResources/values-<lang>/strings.xml` (app UI) and `composeApp/src/androidMain/res/values-<lang>/strings.xml` (notifications). `TranslationsTest` fails if a language is missing a string or a placeholder.
+
 ## Download
 
 Grab the APK from the [latest release](https://github.com/enlob/Wata/releases/latest) and open it on your phone (Android 8.0+). You may need to allow installs from your browser or file manager.

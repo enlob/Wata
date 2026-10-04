@@ -1,0 +1,13 @@
+<resources>
+    <string name="channel_name">Recordatorios para beber</string>
+    <string name="channel_description">Recordatorios para beber agua durante el día</string>
+    <string-array name="reminder_titles">
+        <item>Hora de beber agua 💧</item>
+        <item>Pausa para hidratarte 💧</item>
+        <item>¿Un vaso de agua? 💧</item>
+        <item>Tu cuerpo te lo agradecerá 💧</item>
+    </string-array>
+    <string name="reminder_text_start">Empieza con un vaso. Meta de hoy: %1$d ml.</string>
+    <string name="reminder_text_progress">%1$d de %2$d ml hasta ahora, faltan %3$d ml.</string>
+    <string name="action_drank_glass">Vaso bebido (%1$d ml)</string>
+</resources>

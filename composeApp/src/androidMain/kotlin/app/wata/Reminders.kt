@@ -71,16 +71,13 @@ object ReminderNotifications {
     private const val CHANNEL_ID = "reminders"
     private const val NOTIFICATION_ID = 1
 
-    private val titles = listOf(
-        "Time for some water 💧",
-        "Hydration break 💧",
-        "A glass of water? 💧",
-        "Your body will thank you 💧",
-    )
-
     fun createChannel(context: Context) {
-        val channel = NotificationChannel(CHANNEL_ID, "Drink reminders", NotificationManager.IMPORTANCE_DEFAULT).apply {
-            description = "Gentle reminders to drink water during the day"
+        val channel = NotificationChannel(
+            CHANNEL_ID,
+            context.getString(R.string.channel_name),
+            NotificationManager.IMPORTANCE_DEFAULT,
+        ).apply {
+            description = context.getString(R.string.channel_description)
         }
         context.getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
     }
@@ -96,9 +93,9 @@ object ReminderNotifications {
         if (!canNotify(context)) return
         val goal = state.settings.dailyGoalMl
         val text = if (state.totalMl == 0) {
-            "Start with a glass. Today's goal: $goal ml."
+            context.getString(R.string.reminder_text_start, goal)
         } else {
-            "${state.totalMl} of $goal ml so far, ${goal - state.totalMl} ml to go."
+            context.getString(R.string.reminder_text_progress, state.totalMl, goal, goal - state.totalMl)
         }
         val openApp = PendingIntent.getActivity(
             context,
@@ -109,14 +106,14 @@ object ReminderNotifications {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_drop)
             .setColor(0xFF2F7FEA.toInt())
-            .setContentTitle(titles.random())
+            .setContentTitle(context.resources.getStringArray(R.array.reminder_titles).random())
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setContentIntent(openApp)
             .setAutoCancel(true)
             .addAction(
                 R.drawable.ic_stat_drop,
-                "Drank a glass (${ReminderReceiver.GLASS_ML} ml)",
+                context.getString(R.string.action_drank_glass, ReminderReceiver.GLASS_ML),
                 ReminderReceiver.pendingIntent(context, ReminderReceiver.ACTION_DRINK),
             )
             .build()

@@ -1,0 +1,42 @@
+<resources>
+    <string name="greeting_morning">Bonjour</string>
+    <string name="greeting_afternoon">Bon après-midi</string>
+    <string name="greeting_evening">Bonsoir</string>
+    <string name="greeting_night">Encore debout&#160;?</string>
+    <string name="settings">Paramètres</string>
+
+    <string name="of_goal">sur %1$d ml</string>
+    <string name="title_start">Commençons par un verre</string>
+    <string name="title_reached">Objectif atteint, bravo&#160;!</string>
+    <string name="title_good_start">Bon début</string>
+    <string name="title_keep_going">Continue comme ça</string>
+    <string name="title_over_halfway">Plus de la moitié</string>
+    <string name="title_almost">Tu y es presque</string>
+    <string name="subtitle_goal_today">Ton objectif du jour&#160;: %1$d ml</string>
+    <string name="subtitle_reached">%1$d&#160;% de ton objectif quotidien</string>
+    <string name="subtitle_progress">Encore %1$d ml  ·  %2$d&#160;%</string>
+
+    <string name="reminders_off">Rappels désactivés</string>
+    <string name="allow_notifications">Autorise les notifications pour les rappels</string>
+    <string name="next_reminder_today">Prochain rappel à %1$s</string>
+    <string name="next_reminder_tomorrow">Prochain rappel demain à %1$s</string>
+
+    <string name="portion_sip">Gorgée</string>
+    <string name="portion_glass">Verre</string>
+    <string name="portion_bottle">Bouteille</string>
+    <string name="last_drink">Dernier&#160;: %1$d ml à %2$s</string>
+    <string name="undo">Annuler</string>
+
+    <string name="done">Terminé</string>
+    <string name="daily_goal">Objectif quotidien</string>
+    <plurals name="glasses_hint">
+        <item quantity="one">Environ %1$d verre de 250 ml</item>
+        <item quantity="other">Environ %1$d verres de 250 ml</item>
+    </plurals>
+    <string name="reminders">Rappels</string>
+    <string name="reminders_hint">Un petit rappel pour boire</string>
+    <string name="notifications_blocked">Les notifications sont bloquées. Touche pour les autoriser.</string>
+    <string name="remind_every">Fréquence des rappels</string>
+    <string name="active_hours">Plage horaire</string>
+    <string name="active_hours_hint">Aucun rappel en dehors de cette plage</string>
+</resources>
